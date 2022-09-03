@@ -20,13 +20,13 @@ function Pica({pica,onAdd,onRemove }) {
             {sort===true?
               <>
                 {pica
-                     .sort((a, b) => a.price < b.price ? -1 : 1)
+                     .sort((a, b) => a.cena < b.cena ? -1 : 1)
                      .map((t)=>(<PiceKartica key={t.id} product={t}   onAdd={onAdd} onRemove={onRemove} ></PiceKartica>))}
               </>
               :
               <>
                 {pica
-                     .sort((a, b) => a.price > b.price ? -1 : 1)
+                     .sort((a, b) => a.cena > b.cena ? -1 : 1)
                     .map((t)=>(<PiceKartica key={t.id} product={t}    onAdd={onAdd} onRemove={onRemove}></PiceKartica>))}
               </>
             }
