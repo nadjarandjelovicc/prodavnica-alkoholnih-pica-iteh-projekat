@@ -4,7 +4,7 @@ function Korpa({pica,onAdd,onRemove }) {
  
   return (
     <div> 
-        <div className='svaPica'>
+        <div className='korpa'>
               
             <table>
                 <thead>
