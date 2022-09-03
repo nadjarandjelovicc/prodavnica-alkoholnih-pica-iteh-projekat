@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KorpaController;
+use App\Http\Controllers\PiceController;
+use App\Http\Controllers\StavkaKorpeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +22,24 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
 
+Route::resource('/korpe', KorpaController::class ) ;  
+Route::resource('/stavke', StavkaKorpeController::class ) ;  
+Route::get('pice',[PiceController::class,'index']);
+Route::group(['middleware' => ['auth:sanctum']], function () {  //ulogovani korisnici
+    Route::get('/profiles', function (Request $request) {  
+        return auth()->user();
+    });
+    Route::resource('stavkeKorpe', StavkaKorpeController::class ) ;
+
+    Route::post('pice',[PiceController::class,'store']);
+    Route::put('pice/{id}',[PiceController::class,'update']);
+    Route::delete('pice/{id}',[PiceController::class,'destroy']);
+
+    Route::get('pice/{id}',[PiceController::class,'show']);
+   
+   
+   
+  
+    Route::post('logout', [AuthController::class, 'logout']);  
+  
+});

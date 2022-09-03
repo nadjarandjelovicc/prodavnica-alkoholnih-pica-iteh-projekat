@@ -46,7 +46,8 @@ class PiceController extends Controller
                 'proizvodjac' => 'required|string|max:100', 
                 'cena' => 'required',
                 'vrsta' => 'required'  ,
-                'image' =>'  '
+                'zemlja_porekla'=>'required',
+                'image' =>'required'
 
             ]
         );
@@ -62,7 +63,7 @@ class PiceController extends Controller
                 'proizvodjac' => $request->proizvodjac, 
                 'cena' =>  $request->cena, 
                 'zemlja_porekla'=>$request->zemlja_porekla, 
-                'kolicina'=>$request->kolicina, 
+                'kolicina'=>0, 
 
                 'vrsta' =>  $request->vrsta, 
                 'image' =>  $request->image
