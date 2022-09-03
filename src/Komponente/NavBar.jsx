@@ -1,6 +1,13 @@
  
+import axios from 'axios';
 import { Link } from 'react-router-dom'
-function NavBar() {
+function NavBar({token}) {
+    function odjava(){ 
+        
+         
+       
+      
+      }
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <a className="navbar-brand" href="#">Navbar</a>
@@ -12,15 +19,28 @@ function NavBar() {
             <li className="nav-item active">
                 <Link className="nav-link" to="/">Pocetna  </Link>
             </li>
-            <li className="nav-item">
-                <Link className="nav-link" to="/pica">Ponuda  </Link>
-            </li>
-            <li className="nav-item">
-                <Link className="nav-link" to="/login">Uloguj se  </Link>
-            </li>
-            <li className="nav-item">
-                <Link className="nav-link" to="/register">Registruj se  </Link>
-            </li>
+            {token == null ? 
+                <>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/login">Uloguj se  </Link>
+                </li>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/register">Registruj se  </Link>
+                </li>
+                </>
+                :
+                <>
+                <li className="nav-item">
+                    <Link className="nav-link" to="/pica">Ponuda  </Link>
+                </li>
+
+                <li className="nav-item active">
+                    <Link className="nav-link" to="/"  onClick={odjava}>Odjavi se  </Link>
+                </li>
+                </>
+            }   
+
+
             </ul>
         </div>
     </nav>
