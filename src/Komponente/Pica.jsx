@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PiceKartica from './PiceKartica'
 
-function Pica({telefoni,dodajTelefon,onAdd,onRemove }) {
+function Pica({pica,onAdd,onRemove }) {
   const [sort, setSort] = useState(true);
   function sortAsc(){
     
@@ -15,19 +15,19 @@ function Pica({telefoni,dodajTelefon,onAdd,onRemove }) {
     <div>
         <button className="sortbtn btn" onClick={sortAsc}>Sortiraj rastuće</button>
         <button className="sortbtn btn" onClick={sortDesc}>Sortiraj opadajuće</button>
-        <div className='sviTelefoni'>
+        <div className='svaPica'>
               
             {sort===true?
               <>
-                {telefoni
+                {pica
                      .sort((a, b) => a.price < b.price ? -1 : 1)
-                    .map((t)=>(<TelefonKartica key={t.id} product={t} dodajTelefon={dodajTelefon}  onAdd={onAdd} onRemove={onRemove} ></TelefonKartica>))}
+                     .map((t)=>(<PiceKartica key={t.id} product={t}   onAdd={onAdd} onRemove={onRemove} ></PiceKartica>))}
               </>
               :
               <>
-                {telefoni
+                {pica
                      .sort((a, b) => a.price > b.price ? -1 : 1)
-                    .map((t)=>(<TelefonKartica key={t.id} product={t} dodajTelefon={dodajTelefon}  onAdd={onAdd} onRemove={onRemove}></TelefonKartica>))}
+                    .map((t)=>(<PiceKartica key={t.id} product={t}    onAdd={onAdd} onRemove={onRemove}></PiceKartica>))}
               </>
             }
           
