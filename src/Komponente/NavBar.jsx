@@ -1,5 +1,5 @@
  
-
+import { Link } from 'react-router-dom'
 function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -10,16 +10,16 @@ function NavBar() {
         <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
             <li className="nav-item active">
-                <a className="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <Link className="nav-link" to="/">Pocetna  </Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">Features</a>
+                <Link className="nav-link" to="/pica">Ponuda  </Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link" href="#">Pricing</a>
+                <Link className="nav-link" to="/login">Uloguj se  </Link>
             </li>
             <li className="nav-item">
-                <a className="nav-link disabled" href="#">Disabled</a>
+                <Link className="nav-link" to="/register">Registruj se  </Link>
             </li>
             </ul>
         </div>
