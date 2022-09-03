@@ -22,7 +22,7 @@ class CreatePicesTable extends Migration
             $table->double('cena');
             $table->integer('kolicina')->default(0);
             $table->foreignId('vrsta');
-            $table->string('zemlja_porekla');
+            $table->string('zemlja_porekla')->default("Srbija");
             $table->timestamps();
         });
     }
