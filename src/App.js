@@ -89,7 +89,7 @@ function App() {
           if(p.kolicina === 0){
             return;
           }else{
-            p.amount--; 
+            p.kolicina--; 
           }
         }
       });
