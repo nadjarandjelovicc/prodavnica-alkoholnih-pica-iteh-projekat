@@ -15,6 +15,14 @@ class CreatePicesTable extends Migration
     {
         Schema::create('pices', function (Blueprint $table) {
             $table->id();
+            $table->string('image');
+            $table->string('naziv');
+            $table->string('proizvodjac');
+
+            $table->double('cena');
+            $table->integer('kolicina')->default(0);
+            $table->foreignId('vrsta');
+            $table->string('zemlja_porekla');
             $table->timestamps();
         });
     }

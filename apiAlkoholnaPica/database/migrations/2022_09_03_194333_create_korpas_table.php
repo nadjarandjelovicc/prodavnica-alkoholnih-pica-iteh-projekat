@@ -15,6 +15,7 @@ class CreateKorpasTable extends Migration
     {
         Schema::create('korpas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id'); 
             $table->timestamps();
         });
     }
