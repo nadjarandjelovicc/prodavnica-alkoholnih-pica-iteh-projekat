@@ -51,6 +51,7 @@ function App() {
     cartProducts.forEach((p)=>{
       suma+=p.cena*p.kolicina;
     })
+    console.log(suma);
     setSumPrice(suma);
   }
   function jeUKorpi(id){
@@ -71,7 +72,7 @@ function App() {
     pica.forEach((p) => {
       if (p.id === id) {
         p.kolicina++;
-        setSumPrice(sum+p.cena);
+        
         console.log(sum);
       }
     });
@@ -105,7 +106,7 @@ function App() {
             <Route path="/login" element={ <Login  addToken={addToken} ></Login>}></Route>
             <Route path="/register" element={ <Register ></Register>}></Route>
             <Route path="/pica" element={ <Pica pica={pica} onAdd={addProduct} onRemove={removeProduct} ></Pica>}></Route>
-            <Route path="/korpa" element={ <Korpa pica={cartProducts} onAdd={addProduct} onRemove={removeProduct} ></Korpa>}></Route>
+            <Route path="/korpa" element={ <Korpa pica={cartProducts} onAdd={addProduct} onRemove={removeProduct} sum={sum} ></Korpa>}></Route>
 
 
         </Routes>
