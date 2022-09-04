@@ -5,7 +5,7 @@ import Login from './Komponente/Login';
 import NavBar from './Komponente/NavBar';
 import Pocetna from './Komponente/Pocetna';
 import Register from './Komponente/Register';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Pica from './Komponente/Pica';
@@ -22,7 +22,7 @@ function App() {
   const [cartProducts, setCartProducts] = useState([]);
   const [sum, setSumPrice] = useState(0); 
   const [pica,setPica] = useState([ ]);
-  const [poruke,setPoruke] = useState([]);
+  const [poruke,setPoruke] = useState([]); 
   useEffect(() => {
     const getRandomLists = async () => {
       try {
@@ -132,6 +132,37 @@ function App() {
       refreshCart();
     }
   }
+  function deletePice(id){
+  
+    axios
+    .delete("http://127.0.0.1:8000/api/pice/"+id,{headers:{'Authorization': `Bearer ${ window.sessionStorage.getItem('auth_token')}`} } )
+    .then((res)=>{  
+        console.log(res.data);
+        const token = window.sessionStorage.getItem('auth_token');
+        window. location. reload();
+        window.sessionStorage.set('auth_token',token);
+         
+    })
+    .catch(function (error) {
+        if (error.response) {
+          // Request made and server responded
+          console.log(error.response.data);
+          
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log('Error', error.message);
+        }
+    
+      });
+  }
+  function editPice(id){
+
+  }
   return (
     <div  >
       <BrowserRouter className="App">
@@ -144,7 +175,7 @@ function App() {
             <Route path="/korpa" element={ <Korpa pica={cartProducts} onAdd={addProduct} onRemove={removeProduct} sum={sum} ></Korpa>}></Route>
             <Route path="/kontakt" element={ <Kontakt></Kontakt>}></Route>
             <Route path="/admin/inbox" element={ <Inbox poruke={poruke} ></Inbox>}></Route>
-            <Route path="/admin" element={ <AdminPage   ></AdminPage>}></Route>
+            <Route path="/admin" element={ <AdminPage pica={pica} deletePice={deletePice} ></AdminPage>}></Route>
 
 
         </Routes>
