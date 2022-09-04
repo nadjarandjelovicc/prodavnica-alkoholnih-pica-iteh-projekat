@@ -29,17 +29,19 @@ Route::get('poruke',[PorukaController::class,'index']);
 Route::resource('/korpe', KorpaController::class ) ;  
 Route::resource('/stavke', StavkaKorpeController::class ) ;  
 Route::get('pice',[PiceController::class,'index']);
+Route::post('pice',[PiceController::class,'store']);
+Route::put('pice/{id}',[PiceController::class,'update']);
+Route::delete('pice/{id}',[PiceController::class,'destroy']);
+Route::get('pice/{id}',[PiceController::class,'show']);
 Route::group(['middleware' => ['auth:sanctum']], function () {  //ulogovani korisnici
     Route::get('/profiles', function (Request $request) {  
         return auth()->user();
     });
     Route::resource('stavkeKorpe', StavkaKorpeController::class ) ;
 
-    Route::post('pice',[PiceController::class,'store']);
-    Route::put('pice/{id}',[PiceController::class,'update']);
-    Route::delete('pice/{id}',[PiceController::class,'destroy']);
 
-    Route::get('pice/{id}',[PiceController::class,'show']);
+
+
    
    
    
@@ -54,6 +56,6 @@ Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function(){
         return response()->json(['message'=>'Admin ulogovan'],200);
     });
 
-   
+
 
 });

@@ -5,7 +5,7 @@ import Login from './Komponente/Login';
 import NavBar from './Komponente/NavBar';
 import Pocetna from './Komponente/Pocetna';
 import Register from './Komponente/Register';
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Pica from './Komponente/Pica';
@@ -13,12 +13,15 @@ import Korpa from './Komponente/Korpa';
 import Kontakt from './Komponente/Kontaks';
 import Inbox from './Komponente/Inbox';
 import AdminPage from './Komponente/AdminPage';
+import Izmeni from './Komponente/Izmeni';
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
 function App() {
   const[token,setToken] = useState();
   const [cartNum, setCartNum] = useState(0); 
+  const [izmenaID, setIzmenaID] = useState(0); 
+
   const [cartProducts, setCartProducts] = useState([]);
   const [sum, setSumPrice] = useState(0); 
   const [pica,setPica] = useState([ ]);
@@ -69,11 +72,13 @@ function App() {
   }
  
   function handleLogout(){ 
-    console.log("USAO")
+ 
     window.sessionStorage.setItem('auth_token',null); 
     window.sessionStorage.setItem('auth_name',null); 
  
     console.log(window.sessionStorage.getItem("auth_token")) 
+    window.location.reload();
+     
   }
 
      
@@ -160,9 +165,9 @@ function App() {
     
       });
   }
-  function editPice(id){
-
-  }
+function postaviIDZaIzmenu(id){
+  setIzmenaID(id);
+}
   return (
     <div  >
       <BrowserRouter className="App">
@@ -175,7 +180,8 @@ function App() {
             <Route path="/korpa" element={ <Korpa pica={cartProducts} onAdd={addProduct} onRemove={removeProduct} sum={sum} ></Korpa>}></Route>
             <Route path="/kontakt" element={ <Kontakt></Kontakt>}></Route>
             <Route path="/admin/inbox" element={ <Inbox poruke={poruke} ></Inbox>}></Route>
-            <Route path="/admin" element={ <AdminPage pica={pica} deletePice={deletePice} ></AdminPage>}></Route>
+            <Route path="/admin" element={ <AdminPage pica={pica} deletePice={deletePice} setIzmeniID={postaviIDZaIzmenu} ></AdminPage>}></Route>
+            <Route path="/admin/izmeni" element={ <Izmeni id={izmenaID} ></Izmeni>}></Route>
 
 
         </Routes>
