@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KorpaController;
 use App\Http\Controllers\PiceController;
+use App\Http\Controllers\PorukaController;
 use App\Http\Controllers\StavkaKorpeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,9 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
 
+Route::post('kontakt', [PorukaController::class, 'primiPoruku']); 
+
+Route::get('poruke',[PorukaController::class,'index']);  
 Route::resource('/korpe', KorpaController::class ) ;  
 Route::resource('/stavke', StavkaKorpeController::class ) ;  
 Route::get('pice',[PiceController::class,'index']);
