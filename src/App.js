@@ -12,6 +12,7 @@ import Pica from './Komponente/Pica';
 import Korpa from './Komponente/Korpa';
 import Kontakt from './Komponente/Kontaks';
 import Inbox from './Komponente/Inbox';
+import AdminPage from './Komponente/AdminPage';
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
@@ -142,7 +143,9 @@ function App() {
             <Route path="/pica" element={ <Pica pica={pica} onAdd={addProduct} onRemove={removeProduct} ></Pica>}></Route>
             <Route path="/korpa" element={ <Korpa pica={cartProducts} onAdd={addProduct} onRemove={removeProduct} sum={sum} ></Korpa>}></Route>
             <Route path="/kontakt" element={ <Kontakt></Kontakt>}></Route>
-            <Route path="/inbox" element={ <Inbox poruke={poruke} ></Inbox>}></Route>
+            <Route path="/admin/inbox" element={ <Inbox poruke={poruke} ></Inbox>}></Route>
+            <Route path="/admin" element={ <AdminPage   ></AdminPage>}></Route>
+
 
         </Routes>
         <Footer></Footer>
