@@ -47,3 +47,13 @@ Route::group(['middleware' => ['auth:sanctum']], function () {  //ulogovani kori
     Route::post('logout', [AuthController::class, 'logout']);  
   
 });
+
+Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function(){  
+
+    Route::get('/check', function(){
+        return response()->json(['message'=>'Admin ulogovan'],200);
+    });
+
+   
+
+});

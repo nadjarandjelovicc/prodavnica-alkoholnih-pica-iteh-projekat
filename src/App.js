@@ -72,9 +72,7 @@ function App() {
     window.sessionStorage.setItem('auth_token',null); 
     window.sessionStorage.setItem('auth_name',null); 
  
-    console.log(window.sessionStorage.getItem("auth_token"))
-    
- 
+    console.log(window.sessionStorage.getItem("auth_token")) 
   }
 
      
