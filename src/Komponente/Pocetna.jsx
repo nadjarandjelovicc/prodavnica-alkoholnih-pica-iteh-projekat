@@ -5,9 +5,9 @@ import 'react-slideshow-image/dist/styles.css'
 
 
 const slideImages = [
-  'https://arc-anglerfish-arc2-prod-advancelocal.s3.amazonaws.com/public/ELBFECKDMNGRXGGIMDFLUFT3CU.jpg',
-  'https://c1.wallpaperflare.com/preview/755/538/407/drink-store-wine.jpg',
-  'https://source.unsplash.com/random/?city,night'
+  'https://source.unsplash.com/random/?alcohol',
+  'https://source.unsplash.com/random/?city',
+  'https://source.unsplash.com/random/?bar'
 ];
 
 const Pocetna = () => {
