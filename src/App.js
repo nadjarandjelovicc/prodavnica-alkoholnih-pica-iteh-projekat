@@ -67,6 +67,19 @@ function App() {
     setToken(auth_token);
   }
  
+  function handleLogout(){ 
+    console.log("USAO")
+    window.sessionStorage.setItem('auth_token',null); 
+    window.sessionStorage.setItem('auth_name',null); 
+ 
+    console.log(window.sessionStorage.getItem("auth_token"))
+    
+ 
+  }
+
+     
+  
+ 
   function refreshCart() {
     let u_korpi = pica.filter((p) => p.kolicina > 0);
     setCartProducts(u_korpi);
@@ -123,7 +136,7 @@ function App() {
   return (
     <div  >
       <BrowserRouter className="App">
-        <NavBar token={token}></NavBar>
+        <NavBar token={token} odjava={handleLogout}></NavBar>
         <Routes>
             <Route path="/" element={ <Pocetna></Pocetna>}></Route>
             <Route path="/login" element={ <Login  addToken={addToken} ></Login>}></Route>
