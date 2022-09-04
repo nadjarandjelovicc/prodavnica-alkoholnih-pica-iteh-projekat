@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Pica from './Komponente/Pica';
 import Korpa from './Komponente/Korpa';
+import Kontakt from './Komponente/Kontaks';
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
@@ -107,6 +108,7 @@ function App() {
             <Route path="/register" element={ <Register ></Register>}></Route>
             <Route path="/pica" element={ <Pica pica={pica} onAdd={addProduct} onRemove={removeProduct} ></Pica>}></Route>
             <Route path="/korpa" element={ <Korpa pica={cartProducts} onAdd={addProduct} onRemove={removeProduct} sum={sum} ></Korpa>}></Route>
+            <Route path="/kontakt" element={ <Kontakt></Kontakt>}></Route>
 
 
         </Routes>
