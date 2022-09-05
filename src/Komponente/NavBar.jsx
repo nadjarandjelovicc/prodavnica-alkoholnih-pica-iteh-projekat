@@ -1,11 +1,12 @@
  
+import { BiDrink } from 'react-icons/bi';
 import { Link } from 'react-router-dom'
 
 function NavBar({token,odjava}) {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#">Navbar</a>
+        <a className="navbar-brand" href="#">   <BiDrink></BiDrink></a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
         </button>
@@ -25,14 +26,34 @@ function NavBar({token,odjava}) {
                 </>
                 :
                 <>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/pica">Ponuda  </Link>
-                  
 
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/korpa">Korpa  </Link>
-                </li>
+                    {window.sessionStorage.getItem("auth_name")=='Admin'  ? 
+                            <>
+                     <li className="nav-item">
+                        <Link className="nav-link" to="/admin">Admin  </Link>
+                    
+
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/admin/inbox">Inbox  </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/admin/analiza">Analiza  </Link>
+                    </li>
+                    </>
+                    :
+                    <>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/pica">Ponuda  </Link>
+                    
+
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/korpa">Korpa  </Link>
+                    </li>
+                    </>
+                }
+
                 <li className="nav-item active">
                     <Link className="nav-link" to="/"  onClick={odjava}>Odjavi se  </Link>
                 </li>
