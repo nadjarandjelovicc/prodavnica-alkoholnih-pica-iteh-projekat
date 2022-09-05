@@ -40,7 +40,7 @@ class StavkaKorpeController extends Controller
             $request->all(),
             [
                 'korpa_id' =>  'required' , 
-                'proizvod_id' => 'required',  
+                'pice_id' => 'required',  
                 'kolicina' => 'required'  ,
                  
 
@@ -55,7 +55,7 @@ class StavkaKorpeController extends Controller
 
         $p = StavkaKorpe::create([
                 'korpa_id' =>   $request->korpa_id, 
-                'proizvod_id' => $request->proizvod_id,  
+                'pice_id' => $request->pice_id,  
                 'kolicina'=>$request->kolicina, 
                  
 

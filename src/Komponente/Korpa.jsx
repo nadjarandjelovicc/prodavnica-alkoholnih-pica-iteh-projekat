@@ -7,9 +7,8 @@ import jsPDF from "jspdf";
 const axiosInstance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
   });
-function Korpa({pica,onAdd,onRemove,sum }) {
-
-    
+function Korpa({pica,onAdd,onRemove,sum }) { 
+ 
   //javni web servis da dobijemo koeficijent RSD_EUR
   const [RSD_EUR, setRSDEUR] = useState([]);
   useEffect(() => {
@@ -56,10 +55,10 @@ const [RSD_USD, setRSDUSD] = useState([]);
         //cuvacemo samo stavke korpe, za id korpe cemo uzeti id korisnika (jedna korpa za jednog usera)
         pica.map(p=>{
           console.log(p)
-          console.log("http://127.0.0.1:8000/api/stavke/?korpa_id="+user_id+"&proizvod_id="+p.id+"&kolicina="+p.kolicina+"&user_id="+user_id)
+          console.log("http://127.0.0.1:8000/api/stavke/?korpa_id="+user_id+"&pice_id="+p.id+"&kolicina="+p.kolicina+"&user_id="+user_id)
 
           axios
-          .post("http://127.0.0.1:8000/api/stavke/?korpa_id="+user_id+"&proizvod_id="+p.id+"&kolicina="+p.kolicina+"&user_id="+user_id,{headers:{'Authorization': `Bearer ${ window.sessionStorage.getItem('auth_token')}`} } )
+          .post("http://127.0.0.1:8000/api/stavke/?korpa_id="+user_id+"&pice_id="+p.id+"&kolicina="+p.kolicina+"&user_id="+user_id,{headers:{'Authorization': `Bearer ${ window.sessionStorage.getItem('auth_token')}`} } )
           .then((res)=>{  
               console.log(res.data);
                alert("Uspesno sacuvano")
@@ -111,7 +110,7 @@ const [RSD_USD, setRSDUSD] = useState([]);
     
         doc.setFontSize(15);
         var today = new Date();
-        const footer = " \t\t\t\t\t\t\t\tUKUPNO ZA UPLATU: "+(sum/koeficijentValute).toFixed(2) + "["+oznakaValute+"]";
+        const footer = " \t\t\t\t\t\t\t\tUKUPNO : "+(sum/koeficijentValute).toFixed(2) + "["+oznakaValute+"]";
         const title = "Racun na dan: "+  today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()+footer;
         const headers = [["MODEL", "CENA["+oznakaValute+"]","KOLICINA","UKUPNO["+oznakaValute+"]"]];
     
@@ -131,15 +130,7 @@ const [RSD_USD, setRSDUSD] = useState([]);
   return (
     <div> 
         <div className='korpa'>
-            <br /><br /><br />
-            <label htmlFor="currency">U kojoj valuti zelite racun</label>
 
-            <select name="currency" id="currency"  >
-                <option value="RSD" >RSD</option>
-                <option value="EUR" >EUR</option>
-                <option value="USD" >USD</option>
-    
-            </select>
             <br /><br /><br />
             <table>
                 <thead>
@@ -150,6 +141,19 @@ const [RSD_USD, setRSDUSD] = useState([]);
                 </tbody>
             </table>
             <div className="cenaDiv"><h3>Ukupna cena proizvoda: {sum} RSD</h3></div>
+
+
+
+
+            <br /><br /><br />
+            <label htmlFor="currency">U kojoj valuti zelite racun</label>
+
+            <select name="currency" id="currency"  >
+                <option value="RSD" >RSD</option>
+                <option value="EUR" >EUR</option>
+                <option value="USD" >USD</option>
+    
+            </select>
             <div>
                 <button className="btn btn--pill btn--green" onClick={() => exportPDF()}>Generisi racun</button>
             </div>  
